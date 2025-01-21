@@ -35,7 +35,7 @@ const App = () => {
         localStorage.setItem('isLoggedIn', true)
         localStorage.setItem('role', 'admin')
         localStorage.setItem('user', JSON.stringify(obj))
-        return; // Exit once a match is found
+        return true; // Exit once a match is found
       }
     }
 
@@ -49,7 +49,7 @@ const App = () => {
         localStorage.setItem('role', 'employee')
         localStorage.setItem('user', JSON.stringify(emp))
 
-        return; // Exit once a match is found
+        return true; // Exit once a match is found
       }
     }
 
@@ -59,14 +59,14 @@ const App = () => {
     localStorage.setItem('isLoggedIn', false)
     localStorage.removeItem('role')
     localStorage.removeItem('user')
-
+    return false
   };
 
 
   return (
     <>
       
-      {(!isLoggedIn || !user) && <Login handleCred={handleCred} logged={setIsLoggedIn}/>}
+      {!isLoggedIn && <Login handleCred={handleCred} logged={setIsLoggedIn}/>}
       {isLoggedIn && user === 'admin' && <AdminDashboard logged={setIsLoggedIn}/>}
       {isLoggedIn && user === 'employee' && <Dashboard logged={setIsLoggedIn}/>}
 

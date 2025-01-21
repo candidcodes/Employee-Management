@@ -9,12 +9,16 @@ const login = ({ handleCred, logged }) => {
             e.preventDefault();
 
 
-            handleCred(email, password)
+            const a = handleCred(email, password)
 
             setEmail('')
             setPassword('')
 
-            logged(true)
+            if(a){
+              logged(true)
+            }else{
+              logged(false)
+            }
 
 
         };
@@ -22,12 +26,14 @@ const login = ({ handleCred, logged }) => {
   return (
     <>
       <div className="flex justify-center items-center h-screen w-screen">
-        <div className="border-2 border-emerald-900">
+        
+        <div className="border-2 border-emerald-900 bg-emerald-100 rounded-md p-1 py-20" >
+          <h1 className="text-center text-emerald-600 text-4xl font-bold">LogIn</h1>
           <form
             onSubmit={(e) => {
               handleSubmit(e);
             }}
-            className="flex flex-col p-20"
+            className="flex flex-col p-7"
           >
             <input
               onChange={(e) => {
@@ -35,7 +41,7 @@ const login = ({ handleCred, logged }) => {
               }}
               value={email}
               required
-              className="mb-3 rounded-full px-5 py-2 outline-none border-2 border-emerald-900 bg-transparent text-gray-100 placeholder:text-gray-600"
+              className="mb-3 rounded-full px-5 py-2 outline-none border border-emerald-900 bg-transparent text-gray-900 placeholder:text-gray-600 w-80"
               placeholder="Email"
               type="email"
             />
@@ -45,11 +51,11 @@ const login = ({ handleCred, logged }) => {
               }}
               value={password}
               required
-              className="mb-3 rounded-full px-5 py-2 outline-none border-2 border-emerald-900 bg-transparent text-gray-100 placeholder:text-gray-600"
+              className="mb-3 rounded-full px-5 py-2 outline-none border border-emerald-900 bg-transparent text-gray-900 placeholder:text-gray-600 w-80"
               placeholder="Password"
               type="password"
             />
-            <button className="px-3 py-2 bg-emerald-900 rounded-full text-gray-200">
+            <button className="px-3 py-2 bg-emerald-900 rounded-full text-gray-200 mt-8">
               login
             </button>
           </form>
