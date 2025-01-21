@@ -66,7 +66,7 @@ const App = () => {
   return (
     <>
       
-      {!isLoggedIn && <Login handleCred={handleCred} logged={setIsLoggedIn}/>}
+      {(!isLoggedIn || !user) && <Login handleCred={handleCred} logged={setIsLoggedIn}/>}
       {isLoggedIn && user === 'admin' && <AdminDashboard logged={setIsLoggedIn}/>}
       {isLoggedIn && user === 'employee' && <Dashboard logged={setIsLoggedIn}/>}
 
