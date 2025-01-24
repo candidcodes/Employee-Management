@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Login from "./Components/Auth/Login";
 import Dashboard from "./Components/EmployeeDashboard/Dashboard";
-import AdminDashboard from "./Components/EmployeeDashboard/AdminDashboard";
+import AdminDashboard from "./Components/EmployeeDashboard/AddTask";
 import { UserContext } from "./Context/AuthContext";
 import { setLocalStorage } from "./lib/LocalStorage";
+import AdminAppRouter from "./Routes/AdminAppRouter";
 
 const App = () => {
 
@@ -67,9 +68,8 @@ const App = () => {
     <>
       
       {!isLoggedIn && <Login handleCred={handleCred} logged={setIsLoggedIn}/>}
-      {isLoggedIn && user === 'admin' && <AdminDashboard logged={setIsLoggedIn}/>}
+      {isLoggedIn && user === 'admin' && <AdminAppRouter logged={setIsLoggedIn}/>}
       {isLoggedIn && user === 'employee' && <Dashboard logged={setIsLoggedIn}/>}
-
     </>
   );
 };

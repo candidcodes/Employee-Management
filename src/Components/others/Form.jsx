@@ -48,7 +48,8 @@ const { emps } = useContext(UserContext);
 };
 
   return (
-    <div className="w-full bg-[#0f0f0f] mt-10 p-12 rounded-lg">
+    <div className="w-full bg-[#0f0f0f] mt-10 px-12 py-10 rounded-lg">
+      <h1 className="text-gray-100 text-3xl mb-10 font-semibold">Add Task</h1>
       <form
         className="flex justify-between"
         onSubmit={(e) => {
