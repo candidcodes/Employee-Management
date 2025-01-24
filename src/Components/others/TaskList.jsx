@@ -7,7 +7,7 @@ const TaskList = () => {
     const { tasks } = saveUser
 
   return (
-    <div id='scroll-container' className="flex gap-2 mt-5 pb-2 overflow-auto overflow-y-hidden whitespace-nowrap">
+    <div id='scroll-container' className="flex gap-2 mt-[13vh] pb-2 overflow-auto overflow-y-hidden whitespace-nowrap">
       {tasks.map((task, idx) => {
         return (
           <div key={idx} className={`${!task.active ? 'bg-red-500' : 'bg-teal-500'} select-none w-80 rounded-lg flex-shrink-0 p-5 flex flex-col justify-between relative h-auto`} >
