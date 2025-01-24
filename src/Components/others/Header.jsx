@@ -4,13 +4,14 @@ import { NavLink } from 'react-router-dom'
 
 const Header = ({ logged }) => {
   const { saveUser, user } = useContext(UserContext)
-  console.log(saveUser)
+
   const logout = () => {
     localStorage.setItem('isLoggedIn', false)
     localStorage.removeItem('role')
     localStorage.removeItem('user')
     logged(false)
   }
+
   return (<>
     <div className='flex justify-between items-end'>
         <h1 className='text-2xl font-bold text-red-100'>Hi, <br/><span className='text-4xl font-bold text-red-100'>{saveUser.name}</span></h1>
