@@ -8,6 +8,7 @@ const AuthContext = ({children}) => {
   const[user, setUser] = useState(null)
   const[saveUser, setSaveUser] = useState(null)
   let { ad = [], emps = [] } = getLocalStorage();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   if(!ad && !emps){
     ad = admin;
@@ -15,7 +16,7 @@ const AuthContext = ({children}) => {
     setLocalStorage()
   }
   return (
-    <UserContext.Provider value={{user, setUser, saveUser, setSaveUser, ad, emps}}>
+    <UserContext.Provider value={{user, setUser, saveUser, setSaveUser, ad, emps, isLoggedIn, setIsLoggedIn}}>
       <div>{children}</div>
     </UserContext.Provider>
   )

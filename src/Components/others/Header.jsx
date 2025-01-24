@@ -2,14 +2,14 @@ import React, { useContext } from 'react'
 import { UserContext } from '../../Context/AuthContext'
 import { NavLink } from 'react-router-dom'
 
-const Header = ({ logged }) => {
-  const { saveUser, user } = useContext(UserContext)
+const Header = () => {
+  const { saveUser, user, isLoggedIn, setIsLoggedIn } = useContext(UserContext)
 
   const logout = () => {
     localStorage.setItem('isLoggedIn', false)
     localStorage.removeItem('role')
     localStorage.removeItem('user')
-    logged(false)
+    setIsLoggedIn(false)
   }
 
   return (<>

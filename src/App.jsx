@@ -8,8 +8,7 @@ import AdminAppRouter from "./Routes/AdminAppRouter";
 
 const App = () => {
 
-  const { user, setUser, saveUser, setSaveUser, ad, emps } = useContext(UserContext);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, setUser, saveUser, setSaveUser, ad, emps, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
 
@@ -67,9 +66,9 @@ const App = () => {
   return (
     <>
       
-      {!isLoggedIn && <Login handleCred={handleCred} logged={setIsLoggedIn}/>}
-      {isLoggedIn && user === 'admin' && <AdminAppRouter logged={setIsLoggedIn}/>}
-      {isLoggedIn && user === 'employee' && <Dashboard logged={setIsLoggedIn}/>}
+      {!isLoggedIn && <Login handleCred={handleCred}/>}
+      {isLoggedIn && user === 'admin' && <AdminAppRouter/>}
+      {isLoggedIn && user === 'employee' && <Dashboard/>}
     </>
   );
 };

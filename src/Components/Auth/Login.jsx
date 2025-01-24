@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../Context/AuthContext";
 
-const login = ({ handleCred, logged }) => {
+const login = ({ handleCred }) => {
+
+      const { setIsLoggedIn } = useContext(UserContext)
 
         const [email, setEmail] = useState('')
         const [password, setPassword] = useState('')
@@ -15,11 +18,10 @@ const login = ({ handleCred, logged }) => {
             setPassword('')
 
             if(a){
-              logged(true)
+              setIsLoggedIn(true)
             }else{
-              logged(false)
+              setIsLoggedIn(false)
             }
-
 
         };
 

@@ -6,14 +6,14 @@ import AddTask from '../Components/EmployeeDashboard/AddTask'
 import { UserContext } from '../Context/AuthContext'
 import AdminRouter from './AdminRouter'
 
-const AdminAppRouter = ({ logged }) => {
+const AdminAppRouter = () => {
 
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<AdminRouter element={<AdminDashboard logged={logged}/>}/>}/>
-            <Route path="/add-task" element={<AddTask logged={logged}/>}/>
-            <Route path="/add-employee" element={<AddEmployee logged={logged}/>}/>
+            <Route path="/" element={<AdminRouter element={<AdminDashboard/>}/>}/>
+            <Route path="/add-task" element={<AddTask/>}/>
+            <Route path="/add-employee" element={<AddEmployee/>}/>
         </Routes>
     </BrowserRouter>
   )
