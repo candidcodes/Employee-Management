@@ -9,6 +9,23 @@ const AuthContext = ({children}) => {
   const[saveUser, setSaveUser] = useState(null)
   let { ad = [], emps = [] } = getLocalStorage();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
+
+  useEffect(() => {
+
+    const isLoggedIn = localStorage.getItem('isLoggedIn')
+    const userRole = localStorage.getItem('role')
+    const loggedUser = JSON.parse(localStorage.getItem('user'))
+
+    if(isLoggedIn && userRole && loggedUser){
+      setIsLoggedIn(true)
+      setUser(userRole)
+      setSaveUser(loggedUser)
+    }
+
+    setIsAuthLoading(false)
+    
+  }, [] )
 
   if(!ad && !emps){
     ad = admin;
@@ -16,7 +33,7 @@ const AuthContext = ({children}) => {
     setLocalStorage()
   }
   return (
-    <UserContext.Provider value={{user, setUser, saveUser, setSaveUser, ad, emps, isLoggedIn, setIsLoggedIn}}>
+    <UserContext.Provider value={{user, setUser, saveUser, setSaveUser, ad, emps, isLoggedIn, setIsLoggedIn, isAuthLoading}}>
       <div>{children}</div>
     </UserContext.Provider>
   )

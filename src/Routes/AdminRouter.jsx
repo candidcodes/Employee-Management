@@ -1,18 +1,22 @@
 import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../Context/AuthContext';
 import { Outlet, useNavigate } from 'react-router-dom';
+import Loading from '../Components/others/Loading';
 
 const AdminRouter = () => {
-    const { user } = useContext(UserContext);
-    const navigate = useNavigate()
+  const { user, isAuthLoading, isLoggedIn } = useContext(UserContext);
+  const navigate = useNavigate();
+  console.log(user);
 
-    useEffect(() => {
-        if(user != 'admin'){
-            navigate('/login')
-        }
-    }, [user])
+  useEffect(() => {
+    if (!isAuthLoading && (!isLoggedIn || user !== "admin")) {
+      navigate("/login");
+    }
+  }, [user, isLoggedIn, isAuthLoading]);
 
-  return <Outlet />
-}
+  return <>
+    {isAuthLoading ? <Loading /> : <Outlet />}
+  </>
+};
 
 export default AdminRouter
