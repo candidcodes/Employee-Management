@@ -9,12 +9,15 @@ import AdminRouter from './AdminRouter'
 import Dashboard from '../Components/EmployeeDashboard/Dashboard'
 import EmployeeRouter from './EmployeeRouter'
 import LoggedInRouter from './LoggedInRouter'
+import AuthRouter from './AuthRouter'
 
 const AdminAppRouter = () => {
 
   return (
-    <BrowserRouter>
+    
+    <BrowserRouter> 
         <Routes>
+          <Route path='/' element={<AuthRouter/>} />
             <Route path="/admin" element={<AdminRouter />}>
               <Route index element={<AdminDashboard/>}/>
               <Route path="add-task" element={<AddTask/>}/>
