@@ -9,6 +9,8 @@ const LoggedInRouter = ({ element }) => {
     useEffect(() => {
         if(!isLoggedIn){
             navigate('/login')
+        }else{
+            navigate('/')
         }
     }, [isLoggedIn])
 
