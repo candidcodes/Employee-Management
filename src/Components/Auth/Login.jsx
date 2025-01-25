@@ -1,12 +1,48 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-const login = ({ handleCred }) => {
-
-      const { setIsLoggedIn } = useContext(UserContext)
+const login = () => {
+      const { user, setUser, saveUser, setSaveUser, ad, emps, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+      const navigate = useNavigate()
 
         const [email, setEmail] = useState('')
         const [password, setPassword] = useState('')
+
+        const handleCred = (email, password) => {
+          // Check for admin match
+          for (const obj of ad) {
+            if (email === obj.email && password === obj.password) {
+              setUser('admin');
+              setSaveUser(obj)
+              localStorage.setItem('isLoggedIn', true)
+              localStorage.setItem('role', 'admin')
+              localStorage.setItem('user', JSON.stringify(obj))
+              return 'admin'; // Exit once a match is found
+            }
+          }
+      
+          // Check for employee match
+          for (const emp of emps) {
+            if (email === emp.email && password === emp.password) {
+              setUser('employee');
+              setSaveUser(emp)
+      
+              localStorage.setItem('isLoggedIn', true)
+              localStorage.setItem('role', 'employee')
+              localStorage.setItem('user', JSON.stringify(emp))
+              return 'employee'; // Exit once a match is found
+            }
+          }
+      
+          // If no match is found, reset state
+          setUser();
+          alert("Invalid Credentials");
+          localStorage.setItem('isLoggedIn', false)
+          localStorage.removeItem('role')
+          localStorage.removeItem('user')
+          return false
+        };
 
         const handleSubmit = (e) => {
             e.preventDefault();
@@ -17,9 +53,14 @@ const login = ({ handleCred }) => {
             setEmail('')
             setPassword('')
 
-            if(a){
+            if(a == 'employee'){
               setIsLoggedIn(true)
-            }else{
+              navigate('/employee')
+            }else if(a == 'admin'){
+              setIsLoggedIn(true)
+              navigate('/admin')
+            }
+            else{
               setIsLoggedIn(false)
             }
 

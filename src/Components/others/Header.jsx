@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../Context/AuthContext'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const Header = () => {
+  const navigate = useNavigate()
   const { saveUser, user, isLoggedIn, setIsLoggedIn } = useContext(UserContext)
 
   const logout = () => {
@@ -10,6 +11,7 @@ const Header = () => {
     localStorage.removeItem('role')
     localStorage.removeItem('user')
     setIsLoggedIn(false)
+    navigate('/login')
   }
 
   return (<>
@@ -19,9 +21,9 @@ const Header = () => {
           {
             user == 'admin' && 
             <div className='flex gap-8'>
-              <NavLink to="/" className={({isActive}) =>  isActive ? `text-orange-400 py-3` : `text-gray-200 py-3` }>Task List</NavLink>
-              <NavLink to="/add-task" className={({isActive}) =>  isActive ? `text-orange-400 py-3` : `text-gray-200 py-3` }>Add task</NavLink>
-              <NavLink to="/add-employee" className={({isActive}) =>  isActive ? `text-orange-400 py-3` : `text-gray-200 py-3` }>Add Employee</NavLink>
+              <NavLink to="/admin" className={({isActive}) =>  isActive ? `text-orange-400 py-3` : `text-gray-200 py-3` }>Task List</NavLink>
+              <NavLink to="/admin/add-task" className={({isActive}) =>  isActive ? `text-orange-400 py-3` : `text-gray-200 py-3` }>Add task</NavLink>
+              <NavLink to="/admin/add-employee" className={({isActive}) =>  isActive ? `text-orange-400 py-3` : `text-gray-200 py-3` }>Add Employee</NavLink>
             </div>
           }
           <button onClick={logout} className='p-3 bg-red-600 text-gray-100 rounded-sm'>Log out</button>

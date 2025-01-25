@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react'
-import { UserContext } from '../Context/AuthContext';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context/AuthContext';
 
-const AdminRouter = () => {
+const EmployeeRouter = () => {
     const { user } = useContext(UserContext);
     const navigate = useNavigate()
-
+    console.log(user)
+    
     useEffect(() => {
-        if(user != 'admin'){
+        if(user != 'employee'){
             navigate('/login')
         }
     }, [user])
@@ -15,4 +16,4 @@ const AdminRouter = () => {
   return <Outlet />
 }
 
-export default AdminRouter
+export default EmployeeRouter
