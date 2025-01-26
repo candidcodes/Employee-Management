@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../Context/AuthContext";
+import { TaskListContext } from "../../Context/TaskContext";
 
 const Form = () => {
 const { emps } = useContext(UserContext);
+const { setUpdateTrigger, updateTrigger } = useContext(TaskListContext);
 
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
@@ -44,6 +46,8 @@ const { emps } = useContext(UserContext);
     setCategory('')
     setDate('')
     setAssign('')
+
+    setUpdateTrigger(!updateTrigger) //to trigger the tasklist in the /admin section
     
 };
 

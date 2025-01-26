@@ -21,7 +21,7 @@ const Header = () => {
           {
             user == 'admin' && 
             <div className='flex gap-8'>
-              <NavLink to="/admin/" className={({isActive}) => isActive ? `text-orange-400 py-3` : `text-gray-200 py-3`} end>Task List</NavLink>
+              <NavLink to="/admin" className={({isActive}) => isActive ? `text-orange-400 py-3` : `text-gray-200 py-3`} end>Task List</NavLink>
               <NavLink to="/admin/add-task" className={({isActive}) => isActive ? `text-orange-400 py-3` : `text-gray-200 py-3`}>Add task</NavLink>
               <NavLink to="/admin/add-employee" className={({isActive}) => isActive ? `text-orange-400 py-3` : `text-gray-200 py-3`}>Add Employee</NavLink>
             </div>
