@@ -8,17 +8,10 @@ const TaskNumbers = () => {
 
     // const [newTask, setNewTask] = useState(0)
 
-
-        
-    console.log(tasks)
-
     const newTaskCount = tasks.filter(task => task.newTask).length;
     const activeCount = tasks.filter(task => task.active).length;
     const completedCount = tasks.filter(task => task.completed).length;
     const failedCount = tasks.filter(task => task.failed).length;
-
-    console.log(newTaskCount, activeCount, completedCount, failedCount)
-
     // tasks.forEach((task) => {
     //     if(task.newTask){
     //         setNewTask(newTask+1)

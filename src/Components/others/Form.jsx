@@ -18,8 +18,8 @@ const { emps } = useContext(UserContext);
       taskDescription: description,
       taskDate: date,
       active: false,
-      newTask: false,
-      completed: true,
+      newTask: true,
+      completed: false,
       failed: false,
       urgency: "medium",
     };

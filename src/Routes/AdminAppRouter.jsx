@@ -10,6 +10,7 @@ import Dashboard from '../Components/EmployeeDashboard/Dashboard'
 import EmployeeRouter from './EmployeeRouter'
 import LoggedInRouter from './LoggedInRouter'
 import AuthRouter from './AuthRouter'
+import NotFound from '../Components/EmployeeDashboard/NotFound'
 
 const AdminAppRouter = () => {
 
@@ -29,6 +30,7 @@ const AdminAppRouter = () => {
             </Route>
 
             <Route path="/login" element={<LoggedInRouter element={<Login />}/>}/>
+            <Route path="*" element={<NotFound />}/>
         </Routes>
     </BrowserRouter>
   )

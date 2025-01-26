@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../Context/AuthContext';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Loading from '../Components/others/Loading';
@@ -6,17 +6,24 @@ import Loading from '../Components/others/Loading';
 const AdminRouter = () => {
   const { user, isAuthLoading, isLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
-  console.log(user);
+  const [isReady, setIsReady] = useState(false); // Add a state to track readiness for rendering the outlet
 
   useEffect(() => {
-    if (!isAuthLoading && (!isLoggedIn || user !== "admin")) {
-      navigate("/login");
+    if (!isAuthLoading) {
+      if (!user || user !== "admin") {
+        console.log('Redirecting to /');
+        navigate("/");  // Redirect if not employee or not logged in
+      } else {
+        setIsReady(true);  // If conditions are met, mark the component as ready
+      }
     }
   }, [user, isLoggedIn, isAuthLoading]);
 
   return <>
-    {isAuthLoading ? <Loading /> : <Outlet />}
+    {(isAuthLoading || !isReady) ? <Loading /> : <Outlet />}
   </>
-};
+}
 
-export default AdminRouter
+  
+
+export default AdminRouter;
